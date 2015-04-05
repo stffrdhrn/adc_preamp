@@ -31,9 +31,9 @@ The capacitors between each part are [coupling capacitors](http://www.learningab
 Most microphones need to be [biased with a voltage](http://www.epanorama.net/circuits/microphone_powering.html) and a large resistor. You can think of a microphone as a capacitor, when the capacitor plates move with respect to eachother the capacitance change causing a voltage change. The ouput voltage of a typical microphone will be rated in dB from the manufacturer, around -40dB.  The microphone I am using outputs a signal of about 20mV. 
 
 #### Non-Interting Op-Amp 
-The Non-Interting Op-Amp circuit is a typical op-amp pattern but it contains two simple tricks that they dont often teach you in your op-amp theory courses.  If you look at most op-amp circuits they will contains a large negative and positive rail for powering the op-amp.  For more portable devices this is not practical and we need to know how to power the device with **single-supply**. 
+The Non-Interting Op-Amp circuit is a typical op-amp pattern but it contains two simple tricks that they dont often teach you in your op-amp theory courses.  If you look at most op-amp circuits they will contains a large negative and positive rail for powering the op-amp.  For more portable devices this is not practical and we need to know how to power the device with a **single supply**. 
 
-The single supply circuit is supported by the components `R2`, `R3` and `C2`.  Also not, by using coupling capacitors `C1` and `C3` on each side of the Op-amp circuit the DC (supply) components are isolated.  `R2` and `R3` create a voltage divider network allowing the op-amp `IN+` voltage to sit at half the supply voldage `6V` (kind of a virtual ground).  Next `C2` is also needed to allow `IN-` to rest at `6V` (the virtual ground). This means at rest there is no current flowing through the feedback loop or down to ground.  
+The single supply circuit is supported by the components `R2`, `R3` and `C2`.  Also note, by using coupling capacitors `C1` and `C3` on each side of the Op-amp circuit the DC (supply) components are isolated from other suppplies.  `R2` and `R3` create a voltage divider network allowing the op-amp `IN+` voltage to sit at half the supply voldage `6V` (kind of a virtual ground).  Next `C2` is also needed to allow `IN-` to rest at `6V` (the virtual ground). This means at rest there is no current flowing through the feedback loop or down to ground.  
 
 *Note:* If `C2` was shorted we would would have a path for `6V` DC to go to ground and that would not work. 
 
@@ -43,3 +43,7 @@ Next, in order to make sure our ouput does not cause any damage to the final con
 The components `R7` and `R8` create voltage divider to center the output at half `3.3V`. 
 
 The diodes `D1` and `D2` are clamping diodes.  If the output voltage goes above `3.3v` the `D2` diode will conduct and the output will essentially get clamped to `3.3V`.  If the voltage goes below `0V` then `D1` will activate and the ouptut will be clamped to `0V`.  At the rest voltage ~`1.6V` neither diode is active and the output is `1.6V`. 
+
+### TODO
+ * Currently this uses a chip `uA741CP` chip which requires a `12V` supply.  Switch it out for something that can run on `3.3V` and power the entire circuit off `3.3V`. 
+ * Calculate the bandwidth
