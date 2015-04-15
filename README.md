@@ -40,9 +40,9 @@ The single supply circuit is supported by the components `R2`, `R3` and `C2`.  A
 *Note:* If `C2` was shorted we would would have a path for `6V` DC to go to ground and that would not work. 
 
 #### Output Biasing and Clamping
-Next, in order to make sure our ouput does not cause any damage to the final consumer of the signal we add output clamping or clipping.   This circuit is designed to feed into a ADC chip expecting a signal between 0 and 3.3 volts. 
+Next, in order to make sure our ouput does not cause any damage to the final consumer of the signal we add output clamping or clipping.   This circuit is designed to feed into a ADC chip expecting a signal between 0 and 3.3 volts.
 
-The components `R7` and `R8` create voltage divider to bias the output at half `3.3V`. 
+The components `R7` and `R8` create voltage divider to bias the output at half `3.3V`.  This allows Vout normally sit at 1.65V and input charnges will cause the Vout to go above or below 1.65V like negative and positive voltages of an audio signal. 
 
 The diodes `D1` and `D2` are clamping diodes.  If the output voltage goes above `3.3v` the `D2` diode will conduct and the output will essentially get clamped to `3.3V`.  If the voltage goes below `0V` then `D1` will activate and the ouptut will be clamped to `0V`.  At the rest voltage ~`1.6V` neither diode is active and the output is `1.6V`. 
 
