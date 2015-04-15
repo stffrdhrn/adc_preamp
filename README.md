@@ -1,7 +1,7 @@
 # ADC Preamp
 Kicad schematic for opamp based preamp circuit used with my adc_interface project
 
-I designed this circuit to use with interfacing with my De0 Nano's onboard analog to digital circuit. The cicuit has the following features
+I designed this circuit to use with interfacing with my De0 Nano's onboard analog to digital circuit (ADC). The cicuit has the following features
    * 0-50 x Gain
    * Bandwidth (didnt really calculate, but designed for use with audio)
    * Amp requires 12-20V DC supply
@@ -18,10 +18,12 @@ I designed this circuit to use with interfacing with my De0 Nano's onboard analo
 
 ### Theory of Operation
 
+The compontents have not been chosen to be the best for the job.  These (i.e. the uA741CP and diodes) were what I had available in my parts bin, many of which I pulled off of old PCB's. In the future I would like to revise. But this circuit gets the job done for cheap. 
+
 The circuit can be analysed broken into 3 main parts:
    * Microphone Biasing *(left of C1)*
    * Non-Interting Op-amp *(between C1 and C3)*
-   * Output Clamping *(right of C3)*
+   * Output Biasing and Clamping *(right of C3)*
 
 The capacitors between each part are [coupling capacitors](http://www.learningaboutelectronics.com/Articles/What-is-a-coupling-capacitor) which are used to allow ac signals to pass through each stage. 
 
@@ -37,10 +39,10 @@ The single supply circuit is supported by the components `R2`, `R3` and `C2`.  A
 
 *Note:* If `C2` was shorted we would would have a path for `6V` DC to go to ground and that would not work. 
 
-#### Output Clamping
+#### Output Biasing and Clamping
 Next, in order to make sure our ouput does not cause any damage to the final consumer of the signal we add output clamping or clipping.   This circuit is designed to feed into a ADC chip expecting a signal between 0 and 3.3 volts. 
 
-The components `R7` and `R8` create voltage divider to center the output at half `3.3V`. 
+The components `R7` and `R8` create voltage divider to bias the output at half `3.3V`. 
 
 The diodes `D1` and `D2` are clamping diodes.  If the output voltage goes above `3.3v` the `D2` diode will conduct and the output will essentially get clamped to `3.3V`.  If the voltage goes below `0V` then `D1` will activate and the ouptut will be clamped to `0V`.  At the rest voltage ~`1.6V` neither diode is active and the output is `1.6V`. 
 
