@@ -1,0 +1,19 @@
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 04 Feb 2015 22:25:01 JST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+.INCLUDE UA741.301
+*               + - G O V
+.SUBCKT uA741CP 1 2 3 4 5
+*      + - V G O
+  XUI1 1 2 5 3 4 UA741
+.ENDS uA741CP
+
+* simulates a microphone at 10mV 440hz
+.SUBCKT JACK_2P 1 2 3
+  Vmic  3 1 ac SIN(0 0.02 440)
+.ENDS JACK_2P
+
+V1 2 0 DC 10
+
