@@ -50,6 +50,12 @@ The diodes `D1` and `D2` are clamping diodes.  If the output voltage goes above 
 
 I took some time to simulate the performance of the circuit in `ngspice`. The bandwidth of the circuit is about 100hz to 10Khz.  This is ideal for simple voice amplification as I require but not good for high end audio. 
 
+In the below waveforms the voltages plotted are as follows:
+
+- *V(2)* - input voltage, 20mV 440hz sine wave
+- *V(8)* - voltage output of op amp
+- *V(1)* - voltage output after clamping stage with a 2k load
+
 #### Bandwidth 
 
 ![Preamp Bandwidth](https://raw.githubusercontent.com/stffrdhrn/adc_preamp/master/README/preamp-bandwidth.png)
