@@ -1,4 +1,4 @@
-update=Wed 25 Mar 2015 01:00:30 AM JST
+update=Wed 06 May 2015 09:39:59 AM JST
 version=1
 last_client=eeschema
 [cvpcb]

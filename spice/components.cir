@@ -1,7 +1,5 @@
-* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 04 Feb 2015 22:25:01 JST
-
-* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
-* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+* Components used to implement/simulate the ports for
+* the preamp schematic. 
 
 .INCLUDE UA741.301
 *               + - G O V
@@ -11,9 +9,22 @@
 .ENDS uA741CP
 
 * simulates a microphone at 10mV 440hz
-.SUBCKT JACK_2P 1 2 3
-  Vmic  3 1 ac SIN(0 0.02 440)
-.ENDS JACK_2P
+.SUBCKT MIC_IN 1 2 3
+  Vmic  1 3 ac SIN(0 0.02 440)
+.ENDS MIC_IN
 
-V1 2 0 DC 10
+.SUBCKT OUT 1 2
+  Rload 1 2 2K
+.ENDS OUT
 
+.SUBCKT PWR 1 2 3
+  V1 2 1 DC 3.3v
+  V2 3 1 DC 12v
+.ENDS PWR
+
+* D1n5819 from http://www.onsemi.com/pub_link/Collateral/1N5819.LIB
+.MODEL DIODESCH D 
++IS=1.19279e-05 RS=0.0625421 N=1.16517 EG=1.3
++XTI=3.22098 BV=40 IBV=0.001 CJO=1.50114e-10
++VJ=1.5 M=0.590203 FC=0.5 TT=2.6273e-08
++KF=0 AF=1
