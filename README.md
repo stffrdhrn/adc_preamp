@@ -46,6 +46,17 @@ The components `R7` and `R8` create voltage divider to bias the output at half `
 
 The diodes `D1` and `D2` are clamping diodes.  If the output voltage goes above `3.3v` the `D2` diode will conduct and the output will essentially get clamped to `3.3V`.  If the voltage goes below `0V` then `D1` will activate and the ouptut will be clamped to `0V`.  At the rest voltage ~`1.6V` neither diode is active and the output is `1.6V`. 
 
+### Peformance
+
+I took some time to simulate the performance of the circuit in `ngspice`. The bandwidth of the circuit is about 100hz to 10Khz.  This is ideal for simple voice amplification as I require but not good for high end audio. 
+
+#### Bandwidth 
+
+![Preamp Bandwidth](https://raw.githubusercontent.com/stffrdhrn/adc_preamp/master/README/preamp-bandwidth.png)
+
+#### Waveform
+
+![Preamp Waveform](https://raw.githubusercontent.com/stffrdhrn/adc_preamp/master/README/preamp-waveform.png)
+
 ### TODO
  * Currently this uses a chip `uA741CP` chip which requires a `12V` supply.  Switch it out for something that can run on `3.3V` and power the entire circuit off `3.3V`. 
- * Calculate the bandwidth
